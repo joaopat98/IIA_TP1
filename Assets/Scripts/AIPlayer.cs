@@ -19,12 +19,14 @@ public class AIPlayer : PlayerController
 
     public enum EvaluatationFunc
     {
-        Eval
+        Eval,
+        BasicEval
     };
 
     public enum UtilityFunc
     {
-        Util
+        Util,
+        BasicUtil
     };
     public TypeStrategy strategy;
     public EvaluatationFunc evalfunc;
@@ -47,6 +49,9 @@ public class AIPlayer : PlayerController
             case EvaluatationFunc.Eval:
                 eval = new EvaluationFunction();
                 break;
+            case EvaluatationFunc.BasicEval:
+                eval = new BasicEvaluationFunction();
+                break;
             default:
                 Debug.Log("Not an option");
                 break;
@@ -56,6 +61,9 @@ public class AIPlayer : PlayerController
         {
             case UtilityFunc.Util:
                 ufunc = new UtilityFunction();
+                break;
+            case UtilityFunc.BasicUtil:
+                ufunc = new BasicUtilityFunction();
                 break;
             default:
                 Debug.Log("Not an option");

@@ -5,7 +5,7 @@ using System;
 public class UtilityFunction
 {
 
-    public float evaluate(State s)
+    public virtual float evaluate(State s)
     {
         /////////////////
         // You should implement these

@@ -663,7 +663,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795041764}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a58f751049ebc4f85b0eedea93c26fee, type: 3}
   m_Name: 
@@ -702,7 +702,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795041764}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd6386391c2704538bbc26e419dd271a, type: 3}
   m_Name: 
@@ -714,7 +714,7 @@ MonoBehaviour:
   moveStart: {x: 0, y: 0}
   theMovement: {x: 0, y: 0, z: 0}
   moveAmount: {x: 0, y: 0, z: 0}
-  moveSpeed: 3
+  moveSpeed: 5
   interactive: 0
   agentColor: {r: 0.8092763, g: 1, b: 0.7607843, a: 1}
   UitextInfo: {fileID: 0}
@@ -734,9 +734,9 @@ MonoBehaviour:
   whichplayer: 0
   updateboard: 0
   MaximumNodesToExpand: 100000
-  strategy: 1
-  evalfunc: 0
-  utilfunc: 0
+  strategy: 0
+  evalfunc: 1
+  utilfunc: 1
 --- !u!114 &795041769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -744,7 +744,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795041764}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd6386391c2704538bbc26e419dd271a, type: 3}
   m_Name: 
@@ -756,7 +756,7 @@ MonoBehaviour:
   moveStart: {x: 0, y: 0}
   theMovement: {x: 0, y: 0, z: 0}
   moveAmount: {x: 0, y: 0, z: 0}
-  moveSpeed: 1.5
+  moveSpeed: 5
   interactive: 0
   agentColor: {r: 0.99474853, g: 1, b: 0.9009434, a: 1}
   UitextInfo: {fileID: 0}
@@ -776,9 +776,9 @@ MonoBehaviour:
   whichplayer: 0
   updateboard: 0
   MaximumNodesToExpand: 100000
-  strategy: 1
-  evalfunc: 0
-  utilfunc: 0
+  strategy: 0
+  evalfunc: 1
+  utilfunc: 1
 --- !u!95 &795041770
 Animator:
   serializedVersion: 3
@@ -787,7 +787,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795041764}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: a7ee37a5fb7d3435186d054c27fa594d, type: 2}
   m_CullingMode: 0
@@ -805,7 +805,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795041764}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a58f751049ebc4f85b0eedea93c26fee, type: 3}
   m_Name: 
