@@ -14,7 +14,7 @@ public class MinMaxAlgorithm : MoveMaker
 
     private State nextState;
 
-    private static int maxDepth = 3;
+    private static int maxDepth = 5;
 
     public MinMaxAlgorithm(PlayerController MaxPlayer, EvaluationFunction eval, UtilityFunction utilf, PlayerController MinPlayer)
     {
@@ -40,7 +40,7 @@ public class MinMaxAlgorithm : MoveMaker
         return bestMove;
     }
 
-    private float valMin(State state)
+    private float valMin(State state, float alfa, float beta)
     {
         state = new State(state);
         if (state.AdversaryUnits.Count == 0 || state.PlayersUnits.Count == 0)
@@ -54,19 +54,23 @@ public class MinMaxAlgorithm : MoveMaker
         float v = Mathf.Infinity;
         foreach (var possibleState in GeneratePossibleStates(state))
         {
-            var newV = valMax(possibleState);
+            var newV = valMax(possibleState, alfa, beta);
             if (newV < v)
             {
                 v = newV;
+                nextState = possibleState;
             }
+            if (v <= alfa)
+                return v;
+            beta = Math.Min(beta, v);
         }
         return v;
     }
 
-    private float valMax(State state)
+    private float valMax(State state, float alfa, float beta)
     {
         state = new State(state);
-        if (state.AdversaryUnits.Count == 0)
+        if (state.AdversaryUnits.Count == 0 || state.PlayersUnits.Count == 0)
         {
             return utilityfunc.evaluate(state);
         }
@@ -75,22 +79,26 @@ public class MinMaxAlgorithm : MoveMaker
         {
             return evaluator.evaluate(state);
         }
+
         float v = -Mathf.Infinity;
         foreach (var possibleState in GeneratePossibleStates(state))
         {
-            var newV = valMin(possibleState);
+            var newV = valMin(possibleState, alfa, beta);
             if (newV > v)
             {
                 v = newV;
                 nextState = possibleState;
             }
+            if (v > beta)
+                return v;
+            alfa = Math.Max(alfa, v);
         }
         return v;
     }
 
     public State MinMax(State state)
     {
-        valMax(state);
+        valMax(state, -Mathf.Infinity, Mathf.Infinity);
         while (nextState.parentState.parentState != null) nextState = nextState.parentState;
         return nextState;
     }
