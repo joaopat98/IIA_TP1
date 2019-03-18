@@ -89,7 +89,7 @@ public class MinMaxAlgorithm : MoveMaker
                 v = newV;
                 nextState = possibleState;
             }
-            if (v > beta)
+            if (v >= beta)
                 return v;
             alfa = Math.Max(alfa, v);
         }
