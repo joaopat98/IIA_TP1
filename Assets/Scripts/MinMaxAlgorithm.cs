@@ -14,7 +14,7 @@ public class MinMaxAlgorithm : MoveMaker
 
     private State nextState;
 
-    private static int maxDepth = 7;
+    private static int maxDepth = 5;
 
     public MinMaxAlgorithm(PlayerController MaxPlayer, EvaluationFunction eval, UtilityFunction utilf, PlayerController MinPlayer)
     {
