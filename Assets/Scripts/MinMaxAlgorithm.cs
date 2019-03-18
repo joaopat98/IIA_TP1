@@ -58,7 +58,6 @@ public class MinMaxAlgorithm : MoveMaker
             if (newV < v)
             {
                 v = newV;
-                nextState = possibleState;
             }
         }
         return v;
