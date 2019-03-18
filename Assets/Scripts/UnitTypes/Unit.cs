@@ -61,7 +61,7 @@ public class Unit
             if ( checkX >= 0 && checkX < gridSizeX && checkY >= 0 && checkY < gridSizeY)
             {
                 Unit neighbour = state.board[checkX, checkY];
-                if (neighbour == null && GameManager.instance.TileFromBoardPoint(checkX, checkY).Walkable)
+                if (neighbour == null && !GameManager.instance.TileFromBoardPoint(checkX, checkY).HasWall)
                     neighbours.Add(GameManager.instance.TileFromBoardPoint(checkX, checkY));
 
             }
