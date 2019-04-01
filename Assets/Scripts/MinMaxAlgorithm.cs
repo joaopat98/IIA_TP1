@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -163,11 +163,17 @@ public class MinMaxAlgorithm : MoveMaker
         attacked.hp += Math.Min(0, (attackedUnitBonus.Item1)) - (currentUnitBonus.Item2 + currentUnit.attack);
         state.unitAttacked = attacked;
 
+        state.board[attacked.x, attacked.y] = attacked;
+        int index = state.AdversaryUnits.IndexOf(attacked);
+        state.AdversaryUnits[index] = attacked;
+
+
+
         if (attacked.hp <= 0)
         {
             //Board update by killing the unit!
             state.board[attacked.x, attacked.y] = null;
-            int index = state.AdversaryUnits.IndexOf(attacked);
+            index = state.AdversaryUnits.IndexOf(attacked);
             state.AdversaryUnits.RemoveAt(index);
 
         }
