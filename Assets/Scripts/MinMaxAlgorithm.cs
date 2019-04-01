@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,9 +12,11 @@ public class MinMaxAlgorithm : MoveMaker
     private PlayerController MaxPlayer;
     private PlayerController MinPlayer;
 
+    private StateSorter stateSorter;
+
     private State nextState;
 
-    private static int maxDepth = 5;
+    private static int maxDepth = 7;
 
     public MinMaxAlgorithm(PlayerController MaxPlayer, EvaluationFunction eval, UtilityFunction utilf, PlayerController MinPlayer)
     {
@@ -22,6 +24,7 @@ public class MinMaxAlgorithm : MoveMaker
         this.MinPlayer = MinPlayer;
         this.evaluator = eval;
         this.utilityfunc = utilf;
+        this.stateSorter = new StateSorter(eval);
     }
 
     public override State MakeMove()
@@ -42,7 +45,6 @@ public class MinMaxAlgorithm : MoveMaker
 
     private float valMin(State state, float alfa, float beta)
     {
-        state = new State(state);
         if (state.AdversaryUnits.Count == 0 || state.PlayersUnits.Count == 0)
         {
             return utilityfunc.evaluate(state);
@@ -52,7 +54,11 @@ public class MinMaxAlgorithm : MoveMaker
             return evaluator.evaluate(state);
         }
         float v = Mathf.Infinity;
-        foreach (var possibleState in GeneratePossibleStates(state))
+
+        state = new State(state);
+        var possibleStates = GeneratePossibleStates(state);
+        possibleStates.Sort(stateSorter);
+        foreach (var possibleState in possibleStates)
         {
             var newV = valMax(possibleState, alfa, beta);
             if (newV < v)
@@ -69,7 +75,6 @@ public class MinMaxAlgorithm : MoveMaker
 
     private float valMax(State state, float alfa, float beta)
     {
-        state = new State(state);
         if (state.AdversaryUnits.Count == 0 || state.PlayersUnits.Count == 0)
         {
             return utilityfunc.evaluate(state);
@@ -81,7 +86,11 @@ public class MinMaxAlgorithm : MoveMaker
         }
 
         float v = -Mathf.Infinity;
-        foreach (var possibleState in GeneratePossibleStates(state))
+
+        state = new State(state);
+        var possibleStates = GeneratePossibleStates(state);
+        possibleStates.Sort(stateSorter);
+        foreach (var possibleState in possibleStates)
         {
             var newV = valMin(possibleState, alfa, beta);
             if (newV > v)

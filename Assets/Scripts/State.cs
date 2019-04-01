@@ -25,8 +25,8 @@ public class State : System.IComparable
     {
         // Generates an initial state before entering the adversarial search
         this.Score = 0.0f;
-        this.board = GameManager.instance.board.DeepCopyByExpressionTree(); 
-        this.PlayersUnits = player.PlayersUnits.DeepCopyByExpressionTree(); 
+        this.board = GameManager.instance.board.DeepCopyByExpressionTree();
+        this.PlayersUnits = player.PlayersUnits.DeepCopyByExpressionTree();
         this.AdversaryUnits = adversary.PlayersUnits.DeepCopyByExpressionTree();
         this.unitToPermormAction = null;
         this.unitAttacked = null;
@@ -39,8 +39,8 @@ public class State : System.IComparable
     {
         // Generates a new State based on the parent state
         this.Score = 0.0f;
-        this.board = parentState.board.DeepCopyByExpressionTree(); 
-        this.parentState = parentState.DeepCopyByExpressionTree(); 
+        this.board = parentState.board.DeepCopyByExpressionTree();
+        this.parentState = parentState.DeepCopyByExpressionTree();
         this.PlayersUnits = this.parentState.PlayersUnits;
         this.AdversaryUnits = this.parentState.AdversaryUnits;
         int indexToPermormAcion = this.PlayersUnits.IndexOf(currentUnit);

@@ -606,7 +606,6 @@ GameObject:
   - component: {fileID: 795041765}
   - component: {fileID: 795041767}
   - component: {fileID: 795041769}
-  - component: {fileID: 795041771}
   - component: {fileID: 795041768}
   - component: {fileID: 795041770}
   m_Layer: 0
@@ -662,7 +661,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795041764}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a58f751049ebc4f85b0eedea93c26fee, type: 3}
   m_Name: 
@@ -703,14 +702,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795041764}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd6386391c2704538bbc26e419dd271a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  units: 02000000
+  units: 020000000200000002000000
   startPositions:
   - {x: 2, y: 2}
+  - {x: 1, y: 2}
+  - {x: 3, y: 1}
   moveDestination: {x: 0, y: 0}
   moveStart: {x: 0, y: 0}
   theMovement: {x: 0, y: 0, z: 0}
@@ -735,9 +736,9 @@ MonoBehaviour:
   whichplayer: 0
   updateboard: 0
   MaximumNodesToExpand: 100000
-  strategy: 1
-  evalfunc: 0
-  utilfunc: 0
+  strategy: 0
+  evalfunc: 1
+  utilfunc: 1
 --- !u!114 &795041769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -745,7 +746,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795041764}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd6386391c2704538bbc26e419dd271a, type: 3}
   m_Name: 
@@ -779,9 +780,9 @@ MonoBehaviour:
   whichplayer: 0
   updateboard: 0
   MaximumNodesToExpand: 100000
-  strategy: 0
-  evalfunc: 0
-  utilfunc: 0
+  strategy: 1
+  evalfunc: 1
+  utilfunc: 1
 --- !u!95 &795041770
 Animator:
   serializedVersion: 3
@@ -801,50 +802,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &795041771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 795041764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f9da57aa46f046e9930084ed811fe74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  units: 030000000100000000000000
-  startPositions:
-  - {x: 4, y: 1}
-  - {x: 4, y: 2}
-  - {x: 4, y: 3}
-  moveDestination: {x: 0, y: 0}
-  moveStart: {x: 0, y: 0}
-  theMovement: {x: 0, y: 0, z: 0}
-  moveAmount: {x: 0, y: 0, z: 0}
-  moveSpeed: 1
-  interactive: 0
-  agentColor: {r: 1, g: 1, b: 1, a: 1}
-  UitextInfo: {fileID: 0}
-  baseinfo: 
-  id: 0
-  IsIdle: 0
-  Moving: 0
-  IsAtacking: 0
-  UseAnimations: 0
-  OnMovement: 0
-  ExpandedNodes: 0
-  unitsObjects: []
-  PlayersUnits: []
-  source: {fileID: 0}
-  destination: {fileID: 0}
-  doattack: 0
-  whichplayer: 0
-  updateboard: 0
-  MaximumNodesToExpand: 20000
-  strategy: 0
-  evalfunc: 0
-  utilfunc: 0
 --- !u!1 &1485224584
 GameObject:
   m_ObjectHideFlags: 0
