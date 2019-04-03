@@ -13,8 +13,8 @@ public class MinMaxAlgorithm : MoveMaker
     private PlayerController MinPlayer;
 
     private State nextState;
-
-    private static int maxDepth = 4;
+    private float bestVal;
+    private static int maxDepth = 3;
 
     public MinMaxAlgorithm(PlayerController MaxPlayer, EvaluationFunction eval, UtilityFunction utilf, PlayerController MinPlayer)
     {
@@ -44,11 +44,23 @@ public class MinMaxAlgorithm : MoveMaker
     {
         if (state.AdversaryUnits.Count == 0 || state.PlayersUnits.Count == 0)
         {
-            return utilityfunc.evaluate(state);
+            float val = utilityfunc.evaluate(state);
+            if (val > bestVal)
+            {
+                bestVal = val;
+                nextState = state;
+            }
+            return val;
         }
         if (state.depth >= maxDepth)
         {
-            return evaluator.evaluate(state);
+            float val = evaluator.evaluate(state);
+            if (val > bestVal)
+            {
+                bestVal = val;
+                nextState = state;
+            }
+            return val;
         }
         float v = Mathf.Infinity;
 
@@ -62,7 +74,6 @@ public class MinMaxAlgorithm : MoveMaker
             if (newV < v)
             {
                 v = newV;
-                nextState = possibleState;
             }
             if (v <= alfa)
                 return v;
@@ -75,12 +86,24 @@ public class MinMaxAlgorithm : MoveMaker
     {
         if (state.AdversaryUnits.Count == 0 || state.PlayersUnits.Count == 0)
         {
-            return utilityfunc.evaluate(state);
+            float val = utilityfunc.evaluate(state);
+            if (val > bestVal)
+            {
+                bestVal = val;
+                nextState = state;
+            }
+            return val;
         }
 
         if (state.depth >= maxDepth)
         {
-            return evaluator.evaluate(state);
+            float val = evaluator.evaluate(state);
+            if (val > bestVal)
+            {
+                bestVal = val;
+                nextState = state;
+            }
+            return val;
         }
 
         float v = -Mathf.Infinity;
@@ -95,7 +118,6 @@ public class MinMaxAlgorithm : MoveMaker
             if (newV > v)
             {
                 v = newV;
-                nextState = possibleState;
             }
             if (v >= beta)
                 return v;
@@ -106,6 +128,7 @@ public class MinMaxAlgorithm : MoveMaker
 
     public State MinMax(State state)
     {
+        bestVal = -Mathf.Infinity;
         valMax(state, -Mathf.Infinity, Mathf.Infinity);
         while (nextState.parentState.parentState != null) nextState = nextState.parentState;
         return nextState;

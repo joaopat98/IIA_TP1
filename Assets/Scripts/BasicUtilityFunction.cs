@@ -17,8 +17,8 @@ public class BasicUtilityFunction : UtilityFunction
         {
             enemy_hp += u.hp + u.hpbonus;
         }
-
-        return (((player_hp - enemy_hp) / (float)(player_hp + enemy_hp) + 1) / 2 + 1 / (float)s.depth) * 1000;
+        float val = (((player_hp - enemy_hp) / (float)(player_hp + enemy_hp) + 1) / 2 + 1 / (float)s.depth) * 1000;
+        return val;
 
     }
 }
