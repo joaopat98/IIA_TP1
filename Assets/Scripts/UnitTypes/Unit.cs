@@ -6,7 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 [Serializable]
-public class Unit 
+public class Unit
 {
     public float hp;
     public int attack;
@@ -38,7 +38,7 @@ public class Unit
                 if (neighbour != null && adversary.Contains(neighbour) && !neighbour.IsDead())
                 {
                     attackable.Add(neighbour);
-                    }
+                }
             }
         }
         return attackable;
@@ -58,7 +58,7 @@ public class Unit
         {
             int checkX = this.x + neighbourhood[i, 0];
             int checkY = this.y + neighbourhood[i, 1];
-            if ( checkX >= 0 && checkX < gridSizeX && checkY >= 0 && checkY < gridSizeY)
+            if (checkX >= 0 && checkX < gridSizeX && checkY >= 0 && checkY < gridSizeY)
             {
                 Unit neighbour = state.board[checkX, checkY];
                 if (neighbour == null && !GameManager.instance.TileFromBoardPoint(checkX, checkY).HasWall)
@@ -90,7 +90,7 @@ public class Unit
                 if (neighbour != null && !neighbour.IsDead() && PlayersUnits.Contains(neighbour))
                 {
                     Protector prot = neighbour as Protector;
-                    if(prot != null)
+                    if (prot != null)
                     {
                         currentHpBonus += prot.hpbonus * this.hp;
                     }
@@ -113,7 +113,7 @@ public class Unit
 
     public List<Unit> GetAttackable()
     {
-        PlayerController adversary = GameManager.instance.playerOneTurn? GameManager.instance.playerTwo : GameManager.instance.playerOne;
+        PlayerController adversary = GameManager.instance.playerOneTurn ? GameManager.instance.playerTwo : GameManager.instance.playerOne;
         int gridSizeX = GameManager.instance.board.GetLength(0);
         int gridSizeY = GameManager.instance.board.GetLength(1);
         List<Unit> attackable = new List<Unit>();
@@ -136,7 +136,7 @@ public class Unit
 
     public override string ToString()
     {
-        return id + ", hp:" + hp + " x:"+x + " y:" + y + " atack: "+this.attack;
+        return id + ", hp:" + hp + " x:" + x + " y:" + y + " atack: " + this.attack;
     }
 
     public override bool Equals(object obj)
@@ -148,6 +148,29 @@ public class Unit
     public bool IsDead()
     {
         return this.hp <= 0;
+    }
+
+    public bool CanAttack(State state, Unit unit)
+    {
+        if (!IsDead())
+        {
+            int gridSizeX = state.board.GetLength(0);
+            int gridSizeY = state.board.GetLength(1);
+            for (int i = 0; i < attackrange.GetLength(0); i++)
+            {
+                int checkX = this.x + attackrange[i, 0];
+                int checkY = this.y + attackrange[i, 1];
+                if (checkX >= 0 && checkX < gridSizeX && checkY >= 0 && checkY < gridSizeY)
+                {
+                    Unit neighbour = state.board[checkX, checkY];
+                    if (neighbour == unit)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }
 

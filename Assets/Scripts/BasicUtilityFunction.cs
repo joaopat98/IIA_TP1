@@ -8,7 +8,6 @@ public class BasicUtilityFunction : UtilityFunction
     {
         float player_hp = 0;
         float enemy_hp = 0;
-
         foreach (Unit u in s.PlayersUnits)
         {
             player_hp += u.hp + u.hpbonus;
@@ -19,6 +18,7 @@ public class BasicUtilityFunction : UtilityFunction
             enemy_hp += u.hp + u.hpbonus;
         }
 
-        return (player_hp / Mathf.Max(1, enemy_hp) / s.depth);
+        return (((player_hp - enemy_hp) / (float)(player_hp + enemy_hp) + 1) / 2 + 1 / (float)s.depth) * 1000;
+
     }
 }
