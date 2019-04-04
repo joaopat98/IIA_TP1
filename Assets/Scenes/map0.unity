@@ -707,11 +707,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd6386391c2704538bbc26e419dd271a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  units: 020000000200000002000000
+  units: 030000000100000000000000
   startPositions:
-  - {x: 2, y: 2}
-  - {x: 1, y: 2}
-  - {x: 3, y: 1}
+  - {x: 4, y: 1}
+  - {x: 4, y: 2}
+  - {x: 4, y: 3}
   moveDestination: {x: 0, y: 0}
   moveStart: {x: 0, y: 0}
   theMovement: {x: 0, y: 0, z: 0}
@@ -753,9 +753,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   units: 030000000100000000000000
   startPositions:
-  - {x: 4, y: 1}
-  - {x: 4, y: 2}
-  - {x: 4, y: 3}
+  - {x: 0, y: 1}
+  - {x: 0, y: 2}
+  - {x: 0, y: 3}
   moveDestination: {x: 0, y: 0}
   moveStart: {x: 0, y: 0}
   theMovement: {x: 0, y: 0, z: 0}

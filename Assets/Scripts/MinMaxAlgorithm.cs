@@ -51,6 +51,7 @@ public class MinMaxAlgorithm : MoveMaker
         {
             return evaluator.evaluate(state);
         }
+
         float v = Mathf.Infinity;
 
         state = new State(state);

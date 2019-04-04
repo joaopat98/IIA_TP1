@@ -661,16 +661,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795041764}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a58f751049ebc4f85b0eedea93c26fee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  units: 02000000
+  units: 020000000300000000000000
   startPositions:
-  - {x: 0, y: 0}
-  - {x: 0, y: 2}
   - {x: 0, y: 3}
+  - {x: 0, y: 4}
+  - {x: 0, y: 5}
   moveDestination: {x: 0, y: 0}
   moveStart: {x: 0, y: 0}
   theMovement: {x: 0, y: 0, z: 0}
@@ -707,7 +707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd6386391c2704538bbc26e419dd271a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  units: 010000000300000000000000
+  units: 020000000300000000000000
   startPositions:
   - {x: 4, y: 3}
   - {x: 4, y: 4}
@@ -746,7 +746,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795041764}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd6386391c2704538bbc26e419dd271a, type: 3}
   m_Name: 

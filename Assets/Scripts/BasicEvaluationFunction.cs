@@ -6,7 +6,7 @@ public class BasicEvaluationFunction : EvaluationFunction
 {
     public override float evaluate(State s)
     {
-        return ((float)(0.95 * HPBalance(s) + 0.05 * MoveVal(s)) + 1 / (float)s.depth) / 2;
+        return ((float)(0.7 * HPBalance(s) + 0.3 * MoveVal(s)) + 1 / (float)s.depth) / 2;
     }
 
     private float HPBalance(State s)
@@ -51,13 +51,33 @@ public class BasicEvaluationFunction : EvaluationFunction
             {
                 acum2 += playerUnit.CanAttack(state, enemyUnit) ? 1 : 0;
             }
-            acum += acum / state.AdversaryUnits.Count;
+            acum += acum2 / state.AdversaryUnits.Count;
+        }
+        return acum / state.PlayersUnits.Count;
+    }
+
+    private float Dist(Unit a, Unit b)
+    {
+        return Mathf.Sqrt(Mathf.Pow(b.x - a.x, 2) + Mathf.Pow(b.y - a.y, 2));
+    }
+
+    public float ProximityVal(State state)
+    {
+        float acum = 0;
+        foreach (var playerUnit in state.PlayersUnits)
+        {
+            float acum2 = 0;
+            foreach (var enemyUnit in state.AdversaryUnits)
+            {
+                acum2 += 1 / Dist(playerUnit, enemyUnit);
+            }
+            acum += acum2 / state.AdversaryUnits.Count;
         }
         return acum / state.PlayersUnits.Count;
     }
 
     public float MoveVal(State state)
     {
-        return (float)(0.5 * SurroundingVal(state) + 0.5 * AttackVal(state));
+        return (float)(0.5 * SurroundingVal(state) + 0.5 * AttackVal(state) + 0 * ProximityVal(state));
     }
 }
