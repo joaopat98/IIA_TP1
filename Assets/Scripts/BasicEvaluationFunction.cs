@@ -6,7 +6,7 @@ public class BasicEvaluationFunction : EvaluationFunction
 {
     public override float evaluate(State s)
     {
-        return ((float)(0.7 * HPBalance(s) + 0.3 * MoveVal(s)) + 1 / (float)s.depth) / 2;
+        return ((float)(0.8 * HPBalance(s) + 0.2 * MoveVal(s)) + 1 / (float)s.depth) / 2;
     }
 
     private float HPBalance(State s)
