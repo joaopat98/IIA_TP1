@@ -29,16 +29,11 @@ public class BasicEvaluationFunction : EvaluationFunction
     public float SurroundingVal(State state)
     {
         float acum = 0;
-        foreach (var playerUnit in state.PlayersUnits)
+        foreach (var enemyUnit in state.AdversaryUnits)
         {
-            float acum2 = 0;
-            foreach (var enemyUnit in state.AdversaryUnits)
-            {
-                acum2 += enemyUnit.CanAttack(state, playerUnit) ? 1 : 0;
-            }
-            acum += 1 / (acum2 + 1);
+            acum += 1 / (float)(enemyUnit.GetAttackable(state, state.PlayersUnits).Count + 1);
         }
-        return acum / state.PlayersUnits.Count;
+        return acum / state.AdversaryUnits.Count;
     }
 
     public float AttackVal(State state)
@@ -46,19 +41,14 @@ public class BasicEvaluationFunction : EvaluationFunction
         float acum = 0;
         foreach (var playerUnit in state.PlayersUnits)
         {
-            float acum2 = 0;
-            foreach (var enemyUnit in state.AdversaryUnits)
-            {
-                acum2 += playerUnit.CanAttack(state, enemyUnit) ? 1 : 0;
-            }
-            acum += acum2 / state.AdversaryUnits.Count;
+            acum += (playerUnit.GetAttackable(state, state.AdversaryUnits).Count) / (float)state.AdversaryUnits.Count;
         }
         return acum / state.PlayersUnits.Count;
     }
 
     private float Dist(Unit a, Unit b)
     {
-        return Mathf.Sqrt(Mathf.Pow(b.x - a.x, 2) + Mathf.Pow(b.y - a.y, 2));
+        return Mathf.Abs(b.x - a.x) + Mathf.Abs(b.y - a.y);
     }
 
     public float ProximityVal(State state)
@@ -69,7 +59,12 @@ public class BasicEvaluationFunction : EvaluationFunction
             float acum2 = 0;
             foreach (var enemyUnit in state.AdversaryUnits)
             {
-                acum2 += 1 / Dist(playerUnit, enemyUnit);
+                if(Mathf.Ceil((playerUnit.hp + playerUnit.hpbonus) / (float)(enemyUnit.attack + enemyUnit.attackbonus )) > Mathf.Ceil((enemyUnit.hp + enemyUnit.hpbonus) / (float)(playerUnit.attack + playerUnit.attackbonus )))
+                {
+                    acum2 += playerUnit.CanAttack(state, enemyUnit) ? 1 :1/(Dist(playerUnit, enemyUnit)+1);
+                }else{
+                    acum2 += (float)-1;
+                }
             }
             acum += acum2 / state.AdversaryUnits.Count;
         }
@@ -78,6 +73,6 @@ public class BasicEvaluationFunction : EvaluationFunction
 
     public float MoveVal(State state)
     {
-        return (float)(0.5 * SurroundingVal(state) + 0.5 * AttackVal(state) + 0 * ProximityVal(state));
+        return (float)(0.6 * SurroundingVal(state) + 0.4 * AttackVal(state) + 0.0 * ProximityVal(state));
     }
 }

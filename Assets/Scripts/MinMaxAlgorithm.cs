@@ -57,7 +57,7 @@ public class MinMaxAlgorithm : MoveMaker
         state = new State(state);
         var possibleStates = GeneratePossibleStates(state);
         var stateSorter = new StateSorter(evaluator, true);
-        possibleStates.Sort(stateSorter);
+        //possibleStates.Sort(stateSorter);
         foreach (var possibleState in possibleStates)
         {
             var newV = valMax(possibleState, alfa, beta, false);
@@ -89,7 +89,7 @@ public class MinMaxAlgorithm : MoveMaker
         state = new State(state);
         var possibleStates = GeneratePossibleStates(state);
         var stateSorter = new StateSorter(evaluator, false);
-        possibleStates.Sort(stateSorter);
+        //possibleStates.Sort(stateSorter);
         foreach (var possibleState in possibleStates)
         {
             var newV = valMin(possibleState, alfa, beta);
