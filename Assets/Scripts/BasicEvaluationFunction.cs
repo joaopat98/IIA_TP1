@@ -6,7 +6,7 @@ public class BasicEvaluationFunction : EvaluationFunction
 {
     public override float evaluate(State s)
     {
-        return ((float)(0.8 * HPBalance(s) + 0.2 * MoveVal(s)) + 1 / (float)s.depth) / 2;
+        return ((float)(0.8 * HPBalance(s) + 0.2 * MoveVal(s)));
     }
 
     private float HPBalance(State s)
@@ -22,7 +22,9 @@ public class BasicEvaluationFunction : EvaluationFunction
         {
             enemy_hp += u.hp + u.hpbonus;
         }
-
+        if(s.isAttack){
+            return 0.7f * (0.6f * (((player_hp - enemy_hp) / (float)(player_hp + enemy_hp) + 1) / 2) + 0.4f *(s.PlayersUnits.Count / (s.PlayersUnits.Count + s.AdversaryUnits.Count))) + 0.3f * (s.unitAttacked.attack/100);
+        }
         return  0.6f * (((player_hp - enemy_hp) / (float)(player_hp + enemy_hp) + 1) / 2) + 0.4f *(s.PlayersUnits.Count / (s.PlayersUnits.Count + s.AdversaryUnits.Count));
     }
 
@@ -70,6 +72,6 @@ public class BasicEvaluationFunction : EvaluationFunction
 
     public float MoveVal(State state)
     {
-        return (float)(0.6 * SurroundingVal(state) + 0.35 * AttackVal(state) + 0.05 * ProximityVal(state));
+        return (float)(0.60 * SurroundingVal(state) + 0.30 * AttackVal(state) + 0.05 * ProximityVal(state));
     }
 }
