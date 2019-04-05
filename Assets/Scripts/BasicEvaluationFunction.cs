@@ -23,7 +23,7 @@ public class BasicEvaluationFunction : EvaluationFunction
             enemy_hp += u.hp + u.hpbonus;
         }
 
-        return  0.8f * (((player_hp - enemy_hp) / (float)(player_hp + enemy_hp) + 1) / 2) + 0.2f *(s.PlayersUnits.Count / (s.PlayersUnits.Count + s.AdversaryUnits.Count));
+        return  0.6f * (((player_hp - enemy_hp) / (float)(player_hp + enemy_hp) + 1) / 2) + 0.4f *(s.PlayersUnits.Count / (s.PlayersUnits.Count + s.AdversaryUnits.Count));
     }
 
     public float SurroundingVal(State state)
