@@ -14,7 +14,7 @@ public class MinMaxAlgorithm : MoveMaker
 
     private State nextState;
     private float bestVal;
-    private static int maxDepth = 3;
+    private static int maxDepth = 5;
 
     public MinMaxAlgorithm(PlayerController MaxPlayer, EvaluationFunction eval, UtilityFunction utilf, PlayerController MinPlayer)
     {
@@ -47,7 +47,7 @@ public class MinMaxAlgorithm : MoveMaker
             return utilityfunc.evaluate(state);
         }
 
-        if (state.depth >= maxDepth)
+        if (state.depth >= maxDepth || this.MaxPlayer.ExpandedNodes >= this.MaxPlayer.MaximumNodesToExpand)
         {
             return evaluator.evaluate(state);
         }
@@ -56,7 +56,7 @@ public class MinMaxAlgorithm : MoveMaker
 
         state = new State(state);
         var possibleStates = GeneratePossibleStates(state);
-        var stateSorter = new StateSorter(evaluator, true);
+        var stateSorter = new StateSorter(evaluator, false);
         //possibleStates.Sort(stateSorter);
         foreach (var possibleState in possibleStates)
         {
@@ -79,7 +79,7 @@ public class MinMaxAlgorithm : MoveMaker
             return utilityfunc.evaluate(state);
         }
 
-        if (state.depth >= maxDepth)
+        if (state.depth >= maxDepth || this.MaxPlayer.ExpandedNodes >= this.MaxPlayer.MaximumNodesToExpand)
         {
             return evaluator.evaluate(state);
         }
@@ -88,7 +88,7 @@ public class MinMaxAlgorithm : MoveMaker
 
         state = new State(state);
         var possibleStates = GeneratePossibleStates(state);
-        var stateSorter = new StateSorter(evaluator, false);
+        var stateSorter = new StateSorter(evaluator, true);
         //possibleStates.Sort(stateSorter);
         foreach (var possibleState in possibleStates)
         {
@@ -109,6 +109,7 @@ public class MinMaxAlgorithm : MoveMaker
     public State MinMax(State state)
     {
         valMax(state, -Mathf.Infinity, Mathf.Infinity, true);
+        this.MaxPlayer.ExpandedNodes = 0;
         return nextState;
     }
 

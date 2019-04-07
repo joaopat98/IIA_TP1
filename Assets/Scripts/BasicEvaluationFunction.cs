@@ -6,7 +6,7 @@ public class BasicEvaluationFunction : EvaluationFunction
 {
     public override float evaluate(State s)
     {
-        return ((float)(0.6 * HPBalance(s) + 0.4 * MoveVal(s)));
+        return ((float)(0.65 * HPBalance(s) + 0.35 * MoveVal(s)));
     }
 
     private float HPBalance(State s)
@@ -62,7 +62,6 @@ public class BasicEvaluationFunction : EvaluationFunction
             foreach (var enemyUnit in state.AdversaryUnits)
             {
                 //if(Mathf.Ceil((playerUnit.hp + playerUnit.hpbonus) / (float)(enemyUnit.attack + enemyUnit.attackbonus )) > Mathf.Ceil((enemyUnit.hp + enemyUnit.hpbonus) / (float)(playerUnit.attack + playerUnit.attackbonus )))
-                
                 acum2 += 1/(Dist(playerUnit, enemyUnit)+1);
             }
             acum += acum2 / state.AdversaryUnits.Count;
@@ -72,6 +71,6 @@ public class BasicEvaluationFunction : EvaluationFunction
 
     public float MoveVal(State state)
     {
-        return (float)(0.60 * SurroundingVal(state) + 0.35 * AttackVal(state) + 0.05 * ProximityVal(state));
+        return (float)(0.65 * SurroundingVal(state) + 0.30 * AttackVal(state) + 0.05 * ProximityVal(state));
     }
 }
